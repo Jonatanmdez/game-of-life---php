@@ -9,12 +9,29 @@
 namespace App\Model;
 
 
+/**
+ * Class Neighbours
+ * @package App\Model
+ * @property Cell[] $neighbours
+ */
 class Neighbours
 {
 
-    public function numberOfNeighboursAlive()
+    private $neighbours = [];
+
+    public function add(Cell $cell)
     {
-        return 1;
+        $this->neighbours[] = $cell ;
+    }
+
+    public function count()
+    {
+        $alive = 0;
+        foreach($this->neighbours as $cell){
+            $alive += ($cell->isAlive() ? 1 : 0);
+
+        }
+        return $alive;
     }
 
 }

@@ -6,12 +6,11 @@
  * Time: 17:12
  */
 
-namespace App\Test\Model;
+namespace App\Test\Model\Cell;
 
 use App\Model\Cell;
-use PHPUnit\Framework\TestCase;
 
-class CellTest extends TestCase
+class ConstructorTest extends Helper
 {
 
     public function testCellExists()
@@ -26,7 +25,7 @@ class CellTest extends TestCase
         $this->assertTrue($cell->IsAlive());
     }
 
-    public function testContructorDeadWorks()
+    public function testConstructorDeadWorks()
     {
         $cell = $this->getADeadCell();
         $this->assertFalse($cell->IsAlive());
@@ -38,17 +37,6 @@ class CellTest extends TestCase
         $this->assertFalse($cell->IsAlive());
     }
 
-    public function testCellIsDieAndMustContinueDead()
-    {
-        $cell = $this->getADeadCell();
 
-
-
-    }
-
-    public function getADeadCell(): void
-    {
-        $cell = new Cell(false);
-    }
 
 }

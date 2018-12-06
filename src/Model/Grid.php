@@ -9,7 +9,7 @@
 namespace App\Model;
 
 
-class Cells
+class Grid
 {
     /**
      * @var Cell[][]
@@ -25,7 +25,7 @@ class Cells
     private $columns;
 
     /**
-     * Cells constructor.
+     * Grid constructor.
      */
     public function __construct()
     {
@@ -36,9 +36,10 @@ class Cells
 
     /**
      * @param String $file
-     * @return Cells
+     *
+     * @return Grid
      */
-    public static function readFromString($string): Cells
+    public static function readFromString($string): Grid
     {
         $lines = explode("\n",$string);
         $dimensions = explode(" ",$lines[0]);
@@ -60,14 +61,13 @@ class Cells
                 throw new \Exception("The number of columns is not correct");
             }
 
-
             foreach($cells as $number=>$cellState){
-                $matrix[$i][$number] = new Cell($cellState === '*');
+                $matrix[$i][$number] = new Cell($cellState === '*',$i,$number);
             }
         }
 
 
-        $cells = new Cells();
+        $cells = new Grid();
 
         $cells->matrix = $matrix;
         $cells->columns = $columns;
@@ -104,6 +104,22 @@ class Cells
         }
         return $output;
 
+    }
+
+    public function getCell($x,$y):Cell
+    {
+        if(empty($this->matrix[$x][$y])){
+            throw new \Exception("Cell not found");
+        }
+
+        return $this->matrix[$x][$y];
+    }
+
+    public function getNeighbours(Cell $cell):Neighbours
+    {
+        $neighbours = new Neighbours();
+
+        return $neighbours;
     }
 
 
