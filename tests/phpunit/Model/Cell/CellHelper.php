@@ -47,7 +47,7 @@ class CellHelper extends TestCase
     {
         $neighbours = $this->getMockNeighbours();
         $neighbours->method('alive')->willReturn($numberOfNeighbours);
-        $cell->nextGeneration($neighbours);
+        $cell = $cell->nextGeneration($neighbours);
         $this->assertEquals($alive,$cell->isAlive());
     }
 
