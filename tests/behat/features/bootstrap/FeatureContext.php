@@ -4,6 +4,7 @@ use App\Model\Grid;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
+use PHPUnit\Framework\Assert;
 
 /**
  * Defines application features from the specific context.
@@ -40,7 +41,7 @@ class FeatureContext implements Context
      */
     public function aGenerationHappens()
     {
-        $this->grid->generation();
+        $this->grid->nextGeneration();
     }
 
     /**
@@ -48,6 +49,6 @@ class FeatureContext implements Context
      */
     public function iHave(PyStringNode $string)
     {
-        throw new \Behat\Behat\Tester\Exception\PendingException();
+        Assert::assertEquals($string->getRaw(),$this->grid->toString());
     }
 }
