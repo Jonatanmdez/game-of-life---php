@@ -15,18 +15,22 @@ class Cell
 
     private $isAlive;
 
+    private $generation;
+
     protected $posX;
     protected $posY;
 
     const DEAD = false;
-
     const ALIVE = true;
+
+
 
     public function __construct($isAlive = false,$posX=0,$posY=0)
     {
         $this->isAlive = $isAlive;
         $this->posX = $posX;
         $this->posY = $posY;
+        $this->generation = 1;
     }
 
     /**
@@ -72,9 +76,18 @@ class Cell
             ];
 
 
-        $this->isAlive = $options[$count];
+        $alive = $options[$count];
+
+        $cell = clone($this);
+        $cell->isAlive = $alive;
+        $cell->generation++;
+
+        return $cell;
 
     }
+
+
+
 
 
 

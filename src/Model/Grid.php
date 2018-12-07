@@ -11,6 +11,9 @@ namespace App\Model;
 
 class Grid
 {
+
+
+
     /**
      * @var Cell[][]
      */
@@ -25,6 +28,11 @@ class Grid
     private $columns;
 
     /**
+     * @var int
+     */
+    private $generation;
+
+    /**
      * Grid constructor.
      */
     public function __construct()
@@ -32,6 +40,15 @@ class Grid
         $this->matrix = [];
         $this->rows = 0;
         $this->columns = 0;
+        $this->generation = 1;
+    }
+
+    /**
+     * @return int
+     */
+    public function getGeneration(): int
+    {
+        return $this->generation;
     }
 
     /**
@@ -118,7 +135,10 @@ class Grid
         return $alive;
     }
 
-    public function getIterator()
+    /**
+     * @return Cell[]
+     */
+    public function getIterator(): iterable
     {
 
         for ($x = 0; $x < $this->rows; $x++) {
@@ -205,6 +225,24 @@ class Grid
 
 
         return $neighbours;
+    }
+
+    public function nextGeneration()
+    {
+        $newMatrix=[];
+
+        for($row=0; $row < $this->rows;$row++) {
+            $newMatrix[$row]=[];
+            for ($column = 0; $column < $this->columns; $column++) {
+                $currentCell = $this->matrix[$row][$column];
+                $newMatrix[$row][$column] = $currentCell->nextGeneration($this->getNeighbours($currentCell));
+            }
+        }
+
+        $this->matrix = $newMatrix;
+
+
+        $this->generation++;
     }
 
 
