@@ -13,7 +13,7 @@ use App\Model\Cell;
 use App\Model\Neighbours;
 use PHPUnit\Framework\TestCase;
 
-class Helper extends TestCase
+class CellHelper extends TestCase
 {
 
     const DEAD = false;

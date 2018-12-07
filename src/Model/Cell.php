@@ -12,6 +12,7 @@ namespace App\Model;
 class Cell
 {
 
+
     private $isAlive;
 
     protected $posX;
@@ -24,6 +25,24 @@ class Cell
     public function __construct($isAlive = false,$posX=0,$posY=0)
     {
         $this->isAlive = $isAlive;
+        $this->posX = $posX;
+        $this->posY = $posY;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPosX(): int
+    {
+        return $this->posX;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPosY(): int
+    {
+        return $this->posY;
     }
 
     /**

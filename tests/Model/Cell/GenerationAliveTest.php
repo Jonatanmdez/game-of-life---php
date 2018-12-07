@@ -12,7 +12,7 @@ namespace App\Test\Model\Cell;
 
 use App\Model\Neighbours;
 
-class GenerationAliveTest extends Helper
+class GenerationAliveTest extends CellHelper
 {
     private $aliveCell;
 

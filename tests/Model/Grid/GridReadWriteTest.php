@@ -9,16 +9,17 @@
 namespace App\Test\Model;
 
 use App\Model\Grid;
+use App\Test\Model\Grid\GridHelper;
 use PHPUnit\Framework\TestCase;
 
-class GridReadWriteTest extends TestCase
+class GridReadWriteTest extends GridHelper
 {
 
     public function testMatrixWithOnlyOneCell()
     {
         $originalCellsState = file_get_contents(__DIR__ . '/../../Data/Input/1x1Cells.txt');
         $cells = Grid::readFromString($originalCellsState);
-        $this->assertEquals(1,$cells->getNumber());
+        $this->assertEquals(1,$cells->count());
         $this->assertEquals($originalCellsState,$cells->toString());
     }
 
@@ -26,7 +27,7 @@ class GridReadWriteTest extends TestCase
     {
         $originalCellsState = file_get_contents(__DIR__ . '/../../Data/Input/2x2Cells.txt');
         $cells = Grid::readFromString($originalCellsState);
-        $this->assertEquals(4,$cells->getNumber());
+        $this->assertEquals(4,$cells->count());
         $this->assertEquals($originalCellsState,$cells->toString());
     }
 
@@ -34,7 +35,7 @@ class GridReadWriteTest extends TestCase
     {
         $originalCellsState = file_get_contents(__DIR__ . '/../../Data/Input/3x2Cells.txt');
         $cells = Grid::readFromString($originalCellsState);
-        $this->assertEquals(6,$cells->getNumber());
+        $this->assertEquals(6,$cells->count());
         $this->assertEquals($originalCellsState,$cells->toString());
     }
 
@@ -42,7 +43,7 @@ class GridReadWriteTest extends TestCase
     {
         $originalCellsState = file_get_contents(__DIR__ . '/../../Data/Input/2x4Cells.txt');
         $cells = Grid::readFromString($originalCellsState);
-        $this->assertEquals(8,$cells->getNumber());
+        $this->assertEquals(8,$cells->count());
         $this->assertEquals($originalCellsState,$cells->toString());
     }
 

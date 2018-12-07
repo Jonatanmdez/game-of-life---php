@@ -67,29 +67,70 @@ class Grid
         }
 
 
-        $cells = new Grid();
+        $grid = new Grid();
 
-        $cells->matrix = $matrix;
-        $cells->columns = $columns;
-        $cells->rows = $rows;
+        $grid->matrix = $matrix;
+        $grid->columns = $columns;
+        $grid->rows = $rows;
 
-        return $cells;
+        return $grid;
+
+    }
+
+    public static function factory($rows=1,$columns=1,$defaultState=Cell::ALIVE)
+    {
+        $matrix = [];
+        for($x=0;$x< $rows;$x++){
+            $matrix[$x] = [];
+            for($y=0;$y<$columns;$y++){
+                $matrix[$x][$y] = new Cell($defaultState,$x,$y);
+            }
+        }
+
+
+
+        $grid = new Grid();
+        $grid->matrix = $matrix;
+        $grid->columns = $columns;
+        $grid->rows = $rows;
+
+        return $grid;
+
 
     }
 
     /**
      * @return float|int
      */
-    public function getNumber()
+    public function count()
     {
 
         return $this->columns * $this->rows;
     }
 
+    public function alive()
+    {
+        $cells = $this->getIterator();
+        $alive = 0;
+        foreach($cells as $cell){
+            $alive += ($cell->isAlive() ? 1 : 0);
+        }
+        return $alive;
+    }
 
-    /**
-     *
-     */
+    public function getIterator()
+    {
+
+        for ($x = 0; $x < $this->rows; $x++) {
+            for ($y = 0; $y < $this->columns; $y++) {
+                yield $this->matrix[$x][$y];
+            }
+        }
+
+    }
+
+
+
     public function toString()
     {
 

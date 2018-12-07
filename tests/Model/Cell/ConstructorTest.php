@@ -10,7 +10,7 @@ namespace App\Test\Model\Cell;
 
 use App\Model\Cell;
 
-class ConstructorTest extends Helper
+class ConstructorTest extends CellHelper
 {
 
     public function testCellExists()
