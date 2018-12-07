@@ -158,7 +158,51 @@ class Grid
 
     public function getNeighbours(Cell $cell):Neighbours
     {
+        $positionsToSearch = [
+            [
+                'x'=> $cell->getPosX()-1,
+                'y'=> $cell->getPosY()
+            ],
+            [
+                'x'=> $cell->getPosX()+1,
+                'y'=> $cell->getPosY()
+            ],
+            [
+                'x'=> $cell->getPosX()-1,
+                'y'=> $cell->getPosY()-1
+            ],
+            [
+                'x'=> $cell->getPosX()-1,
+                'y'=> $cell->getPosY()+1,
+            ],
+            [
+                'x'=> $cell->getPosX(),
+                'y'=> $cell->getPosY()+1,
+            ],
+            [
+                'x'=> $cell->getPosX(),
+                'y'=> $cell->getPosY()-1,
+            ],
+            [
+                'x'=> $cell->getPosX()+1,
+                'y'=> $cell->getPosY()+1,
+            ],
+            [
+                'x'=> $cell->getPosX()+1,
+                'y'=> $cell->getPosY()-1,
+            ],
+        ];
+
         $neighbours = new Neighbours();
+
+        foreach($positionsToSearch as $position){
+            try {
+                $cell = $this->getCell($position['x'],$position['y']);
+                $neighbours->add($cell);
+            }catch (\Exception $e){}
+        }
+
+
 
         return $neighbours;
     }

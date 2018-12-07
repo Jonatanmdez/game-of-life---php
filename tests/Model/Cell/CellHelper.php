@@ -46,7 +46,7 @@ class CellHelper extends TestCase
     protected function cellGenerationIsOk(Cell $cell,$numberOfNeighbours,$alive)
     {
         $neighbours = $this->getMockNeighbours();
-        $neighbours->method('count')->willReturn($numberOfNeighbours);
+        $neighbours->method('alive')->willReturn($numberOfNeighbours);
         $cell->nextGeneration($neighbours);
         $this->assertEquals($alive,$cell->isAlive());
     }

@@ -54,8 +54,7 @@ class GetCellTest extends GridHelper
     public function testMissingCell()
     {
         $this->expectExceptionMessage('Cell not found');
-        $cell = $this->grid->getCell(50,50);
-
+        $this->grid->getCell(50,50);
 
     }
 

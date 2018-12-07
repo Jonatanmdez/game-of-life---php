@@ -56,7 +56,7 @@ class Cell
 
     public function nextGeneration(Neighbours $neighbours)
     {
-        $count = $neighbours->count();
+        $count = $neighbours->alive();
 
         $options =
             [

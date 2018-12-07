@@ -24,7 +24,7 @@ class Neighbours
         $this->neighbours[] = $cell ;
     }
 
-    public function count()
+    public function alive()
     {
         $alive = 0;
         foreach($this->neighbours as $cell){
@@ -32,6 +32,11 @@ class Neighbours
 
         }
         return $alive;
+    }
+
+    public function count()
+    {
+       return count($this->neighbours);
     }
 
 }
